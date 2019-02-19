@@ -18,7 +18,7 @@ All of us are well familiar with Facebook, a social networking platform allowing
 This is done through the integration of Blockchain and Paillier homomorphic encryption technologies, which we believe allows for a secure method of transmitting and storing private information in a scalable fashion without the risk of personal information being seen or leaked.
 
 #####**Figure 2.1: Operation of our system**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\K.png)  
+![k](https://user-images.githubusercontent.com/45550811/52999384-91da0500-3460-11e9-82f2-750061e9b27a.png)  
 
 Using our system, anyone who suspects that a particular allele mutation causes a particular genetic disease in humans starts a genesis block containing a starting number (encrypted using the Paillier cryptosystem) in the blockchain for blocks to be subsequently added to it. They will generate the Paillier public and private key pair and will send out the public key along with a query for respondents with the genetic disease in question to respond to by encoding either a "1" if they have the allele mutation in question or a "0" if they do not, using the public key and adding this to a block which is subsequently added to the blockchain. The person who sent out the query can then use the private key to decrypt the encrypted responses and analyze the proportion of respondents who have the mutation, with a high proportion indicating the allele in question is likely correlated to the disease.
 
@@ -26,12 +26,12 @@ Using our system, anyone who suspects that a particular allele mutation causes a
 Our system can be implemented and used by anyone, and the 2 figures below illustrate the different scenarios based on the targeted audience.
 
 #####**Figure 3.1: Implementation of our system within a group of family members**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\M.png)
+![m](https://user-images.githubusercontent.com/45550811/52999387-92729b80-3460-11e9-94e8-ecb579fdb6fb.png)
 
 In this scenario, family members can have their genomic data sequenced and obtain the necessary digital files to start the process. The initiator of the blockchain can then generate the paillier cryptosystem key pair, namely the red public key and the yellow private key, followed by a random integer x, as shown in **Figure 3.1**. After encrypting x with the public key, the initiator can then encrypt his/her response with the public key and generate the genesis block, with the “Timestamp” being the exact date and time it was created, the “Data” being the encrypted sum of his/her response and x, the unique alphanumeric “Hash”, the hashed “Identity” of each participant and finally the “Previous Hash”, which would be 0000 since there are no existing blocks before the genesis block. After this, the initiator would upload the blockchain, where other family members can subsequently add in their own blockchains with the respective information. It is important to note that the “Hash” of block 1 **will** match the “Previous Hash” of the next block and the data in each subsequent block is just the addition of its encrypted response and the encrypted value in the previous block. For instance, from **Figure 3.1**, the “Data” section in block 2 would be the addition of its encrypted response, Enc(0), and the encrypted value in the previous block 1, Enc(X) + Enc(1), which would give the result Enc(1+X+0). After each family member has added their respective blockchains with the respective parameters, the initiator can then decrypt the final numeric value with the private key to obtain the response proportion, as shown above in **Figure 3.1**.
 
 #####**Figure 3.2: Implementation of our system within a group of doctors and patients**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\N.png)
+![n](https://user-images.githubusercontent.com/45550811/52999374-90a8d800-3460-11e9-8d04-a93604240a91.png)
  
 In this scenario, the doctor would like to enquire if a certain phenotype he observe in some patients is due to their genetics. To obtain a larger sample size, the doctor In Charge (IC) would cooperate with his/her other colleagues. The doctor would make use of our query-based approach system and generate the paillier cryptosystem key pair, namely the red public key and yellow private key as shown in **Figure 3.2**. After generating the random number x, the doctor IC would distribute the keys accordingly: The public keys to the participants and the private keys to the other doctors. After making sure each of the participants have their sequenced genomic file with them, the doctor IC would send out a query about a particular allele that he is interested in. Participants would then encrypt their responses to the query with the public key provided and after the Peer-To-Peer(P2P) network is established between the doctors, the doctor IC would create the genesis block and upload the blockchain. Subsequently, patients can add their own blocks to the growing chain with the same synchronised data shared and displayed across all the nodes. Other than the increase in sample size, the collaboration between the doctors would ensure that even if a node is breached, the overall blockchain would still remain intact, as discussed earlier. After this process, the doctor IC can decrypt the “Data” section of the last block to obtain the response proportion of the participants.
 
@@ -44,7 +44,7 @@ In this scenario, the doctor would like to enquire if a certain phenotype he obs
 A set of paillier keys is used, the public key and the private key. The public key is used to encrypt the necessary data while the private key is used to decrypt the encrypted data. One special characteristic of this is that computations, such as addition, can still be done on the encrypted data. Meaning, if a + b = c, then Decrypt[Encrypt(a)+Encrypt(b)] = Decrypt[Encrypt(c)] = c. This characteristic is useful in our approach, since the response proportion still needs to be known at the end of the day.
 
 #####**Figure 5.11: How Paillier homomorphic encryption functions in our system**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\J.png)
+![j](https://user-images.githubusercontent.com/45550811/52999382-91da0500-3460-11e9-9299-c272f4a01017.png)
 
 #####**5.2: Example of implementation of Paillier homomorphic encryption in our system**
 Generation of public and private key, and encryption of starting message
@@ -60,7 +60,7 @@ enc_new_message <- enc_message
 The blockchain is a type of digitalized, public ledger that is open to anyone: It contains replicated, synchronised and shared data that can potentially be geographically spread across the world. One block can contain 5 sets of information, mainly: The exact time it was created (Timestamp), the data that is encoded into the block (Data), a verification id (Hash), the verification id of the previous block (Previous Hash) and finally the identity of the owner of the block. The Hash function is a function which generates a unique and long string of alphanumeric characters based on the other parameters of the block. For a blockchain to be valid, the “Hash” of the current block must be the exact copy of the “Previous Hash” of the next block. Therefore, if any parameter in a block is changed, the Hash would change as well, and since the “Hash” of that block and the recorded “Previous Hash” of the next block isn’t the same, the blockchain would become invalid. As the blockchain uses a Peer-to-Peer (P2P) technology, as long as the majority of the nodes have a consensus to the correct blockchain, the system would not be compromised.
 
 #####**Figure 5.31: How the Blockchain functions in our system**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\A.png)
+![a](https://user-images.githubusercontent.com/45550811/52999375-90a8d800-3460-11e9-82b4-052b54e1f9cb.png)
 
 #####**5.4: Example of implementation of Blockchain in our system**
 Generation of genesis block
@@ -72,7 +72,7 @@ block_genesis <-  list(identity = "Doctor",
 blockchain <- list(block_genesis)	#create blockchain
 ```
 #####**5.5: Analogy to Blockchain**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\B.png)
+![b](https://user-images.githubusercontent.com/45550811/52999376-90a8d800-3460-11e9-831f-422d5cd8271b.png)
 
 
 To visualise the Hash and the Previous Hash functions better, we can imagine the blockchain as a chain of unique NTUC trolleys. Each trolley would represent a block: The metal chain would be the block’s “Hash” while the counter on the next trolley would represent the “Previous Hash”. As each trolley is unique, block 1’s metal chain can only fit into Block 2’s counter while block 2’s “metal chain can only fit into Block 3’s counter. Let’s say that for a certain supermarket company, a manager would check the trolleys 10 minutes after they arrive from a new shipment. If the trolleys are all connected properly in a chain, the manager accepts the shipment. If not, the shipment would be rejected a new one would be requested. Now, imagine that there is a saboteur, who wants to sabotage the trolleys by replacing them with spoilt trolleys. Let’s say he wants to replace the 2nd trolley with a spoilt one.
@@ -97,18 +97,19 @@ hash_block <- function(block){
 ```
 
 ###**6. Comparison between our system and a digital spreadsheet**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\L.png)
+![l](https://user-images.githubusercontent.com/45550811/52999385-92729b80-3460-11e9-880d-8725777789fb.png)
 From this figure, we can observe the distinct difference between these 2 ways of storing data. In terms of access, the blockchain allows anyone to view it, but only a select few, such as the doctor in our case, would be able to view the data inside the blockchain with the use of the private key. On the other hand, for a digital spreadsheet such as google spreadsheet, everyone with the password, participant or not, has access to it and everyone is able to observe its contents. The blockchain uses a peer to peer (P2P) distribution network to keep the blockchain updated and data storage is decentralised, while the digital spreadsheet usually uses a client and server distribution, with data being sent to the main server before it would be sent back, hence it utilises a centralised data storage system. For the contents inside each storage system, the pairing of blockchain and additive homomorphic encryption has allowed the data to be encrypted, synchronised and shared between participants in real time, with the addition of data in blockchains being orderly and well controlled. On the other hand, the password protected digital spreadsheet offers little security as the data is unencrypted and anyone with access to the spreadsheet is able to tamper with it. Addition of data is uncontrollable and unorderly while the password protection is ineffective as it would be easy to crack and intercepted. For the blockchain, when data has been uploaded, it would be immutable. The blockchain operates on a public system, with it being accessible to everyone and anonymity ensured for each participant. The digital spreadsheet, on the other hand, uses a private-based system where the identity of each participant may not be anonymous and they are trusted and pre-vetted before being granted access to the spreadsheet. In terms of its defense against hackers, although a centralised data storage system is used and maximum security is provided for the server, the data in question is still vulnerable. The hacker could either intercept transmissions between the participant and the server to obtain the password for the spreadsheet; or he could simply break the password securing the document. With the data in the spreadsheet being unencrypted, the hacker would be exposed to a trove of data that can be manipulated, leading to dire consequences. However, for the blockchain, it utilises the P2P network to deter hackers as they would need to replace the blockchains in >50% of all the nodes to successfully alter the final product. In addition, the altering of data in each block is made troublesome and time consuming for the saboteur through the use of the Hash function. The data is also protected with paillier encryption, hence only those with the private key, namely the doctors in our case, are able to decrypt the encrypted data.
 
 
 ###**7. Explanation and deployment of our system**
 ####Here's a general overview of how our code works:
-**Initialisation will be done by the initiator:** ![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\C.png)
+**Initialisation will be done by the initiator:** 
+![c](https://user-images.githubusercontent.com/45550811/52999377-91416e80-3460-11e9-9c54-025eec6c7b0e.png)
 **Each respondent will then carry out the following steps:**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\D.png)
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\E.png)
+![d](https://user-images.githubusercontent.com/45550811/52999378-91416e80-3460-11e9-8584-23f4d4835671.png)
+![e](https://user-images.githubusercontent.com/45550811/52999380-91416e80-3460-11e9-9d5e-8b6d90d36ccb.png)
 **Finally the initiator will carry out the analysis:**
-![](D:\Ang_Zhi_Tat\Ang_Zhi_Tat_ARP\Screenshots_Of_Diagrams\F.png)
+![f](https://user-images.githubusercontent.com/45550811/52999381-91da0500-3460-11e9-94cd-3bb0a0950957.png)
 
 We will now proceed on to the analysis of the files we downloaded from OpenSNP to test out our system on real data. There are 3 different phases, namely: The initiation phase, the extension phase and the analysis phase. Firstly, the initiation phase:
 
