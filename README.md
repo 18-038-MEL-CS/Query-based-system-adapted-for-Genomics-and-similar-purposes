@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ###**1. Abstract**
-We developed a query-based system which allows users to respond using their genome is developed via incorporating additive homomorphic encryption into a blockchain. This allows for secure and efficient accumulation of data in the form of genetic responses based on queries, which provides the security and robustness a regular spreadsheet or password-protected document is unable to offer. In the deployment of our system on real biological data, we used 73 VCF files obtained from OpenSNP belonging to users which have Hay Fever. The files can be found [here](https://opensnp.org/phenotypes/195)
+We developed a query-based system which allows users to respond using their genome. It is developed via incorporating additive homomorphic encryption into a blockchain. This allows for secure and efficient accumulation of data in the form of genetic responses based on queries, which provides the security and robustness a regular spreadsheet or password-protected document is unable to offer. In the deployment of our system on real biological data, we used 73 VCF files obtained from OpenSNP belonging to users which have Hay Fever. The files can be found [here](https://opensnp.org/phenotypes/195)
 
 ###**2. Introduction**
 All of us are well familiar with Facebook, a social networking platform allowing free open transmission of information, as well as Google Spreadsheet, which allows the upload and manipulation of data among users which have access to the spreadsheet. However, open sharing and manipulation of information may not necessarily be desired, especially in the field of Genomics. We therefore seek to develop a platform similar to Facebook and Google Spreadsheet which is adapted to the field of Genomics.
@@ -28,25 +28,23 @@ Our system can be implemented and used by anyone, and the 2 figures below illust
 #####**Figure 3.1: Implementation of our system within a group of family members**
 ![m](https://user-images.githubusercontent.com/45550811/52999387-92729b80-3460-11e9-94e8-ecb579fdb6fb.png)
 
-In this scenario, family members can have their genomic data sequenced and obtain the necessary digital files to start the process. The initiator of the blockchain can then generate the paillier cryptosystem key pair, namely the red public key and the yellow private key, followed by a random integer x, as shown in **Figure 3.1**. After encrypting x with the public key, the initiator can then encrypt his/her response with the public key and generate the genesis block, with the “Timestamp” being the exact date and time it was created, the “Data” being the encrypted sum of his/her response and x, the unique alphanumeric “Hash”, the hashed “Identity” of each participant and finally the “Previous Hash”, which would be 0000 since there are no existing blocks before the genesis block. After this, the initiator would upload the blockchain, where other family members can subsequently add in their own blockchains with the respective information. It is important to note that the “Hash” of block 1 **will** match the “Previous Hash” of the next block and the data in each subsequent block is just the addition of its encrypted response and the encrypted value in the previous block. For instance, from **Figure 3.1**, the “Data” section in block 2 would be the addition of its encrypted response, Enc(0), and the encrypted value in the previous block 1, Enc(X) + Enc(1), which would give the result Enc(1+X+0). After each family member has added their respective blockchains with the respective parameters, the initiator can then decrypt the final numeric value with the private key to obtain the response proportion, as shown above in **Figure 3.1**.
+In this scenario, family members can have their genomic data sequenced and obtain the necessary digital files to start the process. The initiator of the blockchain can then generate the paillier cryptosystem key pair, namely the red public key and the yellow private key, followed by a random integer x, as shown in **Figure 3.1**. After encrypting x with the public key, the initiator can then encrypt his/her response with the public key and generate the genesis block, with the “Timestamp” being the exact date and time it was created, the “Data” being the encrypted sum of his/her response and x, the unique alphanumeric “Hash”, the hashed “Identity” of each participant and finally the “Previous Hash”, which would be 0000 since there are no existing blocks before the genesis block. After this, the initiator would upload the blockchain, where other family members can subsequently add in their own blockchains with the respective information. It is important to note that the “Hash” of block 1 **will** match the “Previous Hash” of the next block and the data in each subsequent block is just the addition of its encrypted response and the encrypted value in the previous block. For instance, from **Figure 3.1**, the “Data” section in block 2 would be the addition of its encrypted response, Enc(0), and the encrypted value in the previous block 1, Enc(X) + Enc(1), which would give the result Enc(1+X+0). After all family members contributed their blockchains with their respective unique parameters, the initiator can then decrypt the final numeric value with the private key to obtain the response proportion, as shown above in **Figure 3.1**.
 
 #####**Figure 3.2: Implementation of our system within a group of doctors and patients**
 ![n](https://user-images.githubusercontent.com/45550811/52999374-90a8d800-3460-11e9-8d04-a93604240a91.png)
  
-In this scenario, the doctor would like to enquire if a certain phenotype he observe in some patients is due to their genetics. To obtain a larger sample size, the doctor In Charge (IC) would cooperate with his/her other colleagues. The doctor would make use of our query-based approach system and generate the paillier cryptosystem key pair, namely the red public key and yellow private key as shown in **Figure 3.2**. After generating the random number x, the doctor IC would distribute the keys accordingly: The public keys to the participants and the private keys to the other doctors. After making sure each of the participants have their sequenced genomic file with them, the doctor IC would send out a query about a particular allele that he is interested in. Participants would then encrypt their responses to the query with the public key provided and after the Peer-To-Peer(P2P) network is established between the doctors, the doctor IC would create the genesis block and upload the blockchain. Subsequently, patients can add their own blocks to the growing chain with the same synchronised data shared and displayed across all the nodes. Other than the increase in sample size, the collaboration between the doctors would ensure that even if a node is breached, the overall blockchain would still remain intact, as discussed earlier. After this process, the doctor IC can decrypt the “Data” section of the last block to obtain the response proportion of the participants.
+In this scenario, a doctor would like to enquire if a certain phenotype he/she observed in some patients is due to their genetics. To obtain a larger sample size, the Doctor-In-Charge (DIC) would cooperate with his/her other colleagues. The DIC would make use of our query-based approach system and generate the paillier cryptosystem key pair, namely the red public key and yellow private key as shown in **Figure 3.2**. After generating the random number x, the DIC would distribute the keys accordingly: The public keys to the participants and the private keys to the other doctors. After making sure that the participants have their sequenced genomic file with them, the DIC would send out a query about a particular allele that he/she is interested in. Participants would then encrypt their responses to the query with the public key provided and after the Peer-To-Peer(P2P) network is established between the doctors, the DIC would create the genesis block and upload the blockchain. Subsequently, patients can add their own blocks to the growing chain with the same synchronised data shared and displayed across all the nodes. The advantage of this approach is firstly, an increase in sample size for research and secondly, the collaboration between the doctors would ensure that even if a node is breached, the overall blockchain would still remain intact, as discussed earlier. After this process, the DIC can decrypt the “Data” section of the last block to obtain the response proportion of the participants.
 
 
-###**4. Comparison between GWAS and our system**
+###**4. Comparison between GWAS and our system - Technologies implemented**
 
-###**5. Technologies implemented**
-
-#####**5.1: Paillier homomorphic encryption**
+#####**4.1: Paillier homomorphic encryption**
 A set of paillier keys is used, the public key and the private key. The public key is used to encrypt the necessary data while the private key is used to decrypt the encrypted data. One special characteristic of this is that computations, such as addition, can still be done on the encrypted data. Meaning, if a + b = c, then Decrypt[Encrypt(a)+Encrypt(b)] = Decrypt[Encrypt(c)] = c. This characteristic is useful in our approach, since the response proportion still needs to be known at the end of the day.
 
-#####**Figure 5.11: How Paillier homomorphic encryption functions in our system**
+#####**Figure 4.11: How Paillier homomorphic encryption functions in our system**
 ![j](https://user-images.githubusercontent.com/45550811/52999382-91da0500-3460-11e9-9299-c272f4a01017.png)
 
-#####**5.2: Example of implementation of Paillier homomorphic encryption in our system**
+#####**4.2: Example of implementation of Paillier homomorphic encryption in our system**
 Generation of public and private key, and encryption of starting message
 ```
 keyPair <- keys(modulusBits)  #Generate Paillier public and private keys
@@ -56,13 +54,13 @@ enc_message <- keyPair$pubkey$encrypt(message)  #encrypt starting msg
 enc_new_message <- enc_message
 ```
 
-#####**5.3: Blockchain**
-The blockchain is a type of digitalized, public ledger that is open to anyone: It contains replicated, synchronised and shared data that can potentially be geographically spread across the world. One block can contain 5 sets of information, mainly: The exact time it was created (Timestamp), the data that is encoded into the block (Data), a verification id (Hash), the verification id of the previous block (Previous Hash) and finally the identity of the owner of the block. The Hash function is a function which generates a unique and long string of alphanumeric characters based on the other parameters of the block. For a blockchain to be valid, the “Hash” of the current block must be the exact copy of the “Previous Hash” of the next block. Therefore, if any parameter in a block is changed, the Hash would change as well, and since the “Hash” of that block and the recorded “Previous Hash” of the next block isn’t the same, the blockchain would become invalid. As the blockchain uses a Peer-to-Peer (P2P) technology, as long as the majority of the nodes have a consensus to the correct blockchain, the system would not be compromised.
+#####**4.3: Blockchain**
+The blockchain is a type of digitalized, public ledger that is open to anyone: It contains replicated, synchronised and shared data that can potentially be geographically spread across the world. One block can contain 5 sets of information, mainly: The exact time it was created (Timestamp), the data that is encoded into the block (Data), a verification id (Hash), the verification id of the previous block (Previous Hash) and finally the identity of the owner of the block. The Hash function is a function which generates a unique and long string of alphanumeric characters based on the other parameters of the block. For a blockchain to be valid, the “Hash” of the current block must be the exact copy of the “Previous Hash” of the next block. Therefore, if any parameter in a block is changed, the Hash would change as well, and since the “Hash” of that block and the recorded “Previous Hash” of the next block isn’t the same, the blockchain would become invalid. As the blockchain uses Peer-to-Peer (P2P) technology, as long as the majority of the nodes have a consensus to the correct blockchain, the system would not be compromised.
 
-#####**Figure 5.31: How the Blockchain functions in our system**
+#####**Figure 4.31: How the Blockchain functions in our system**
 ![a](https://user-images.githubusercontent.com/45550811/52999375-90a8d800-3460-11e9-82b4-052b54e1f9cb.png)
 
-#####**5.4: Example of implementation of Blockchain in our system**
+#####**4.4: Example of implementation of Blockchain in our system**
 Generation of genesis block
 ```
 block_genesis <-  list(identity = "Doctor",
@@ -71,20 +69,26 @@ block_genesis <-  list(identity = "Doctor",
                    	previous_hash = "0")
 blockchain <- list(block_genesis)	#create blockchain
 ```
-#####**5.5: Analogy to Blockchain**
+#####**4.5: Analogy to Blockchain**
 ![b](https://user-images.githubusercontent.com/45550811/52999376-90a8d800-3460-11e9-831f-422d5cd8271b.png)
 
 
-To visualise the Hash and the Previous Hash functions better, we can imagine the blockchain as a chain of unique NTUC trolleys. Each trolley would represent a block: The metal chain would be the block’s “Hash” while the counter on the next trolley would represent the “Previous Hash”. As each trolley is unique, block 1’s metal chain can only fit into Block 2’s counter while block 2’s “metal chain can only fit into Block 3’s counter. Let’s say that for a certain supermarket company, a manager would check the trolleys 10 minutes after they arrive from a new shipment. If the trolleys are all connected properly in a chain, the manager accepts the shipment. If not, the shipment would be rejected a new one would be requested. Now, imagine that there is a saboteur, who wants to sabotage the trolleys by replacing them with spoilt trolleys. Let’s say he wants to replace the 2nd trolley with a spoilt one.
+To visualise the Hash and the Previous Hash functions better, think of the blockchain as a chain of unique interlocking supermarket trolleys. Each trolley would represent a block: The metal chain would be the block’s “Hash” while the counter on the next trolley would represent the “Previous Hash”. As each trolley is unique, trolley 1’s metal chain can only fit into trolley 2’s counter while trolley 2’s metal chain can only fit into trolley 3’s counter. 
 
-However, it would be a very tedious task, as if an entirely new 2nd trolley is inserted into the chain, its current metal chain would be changed entirely, hence this metal chain cannot be fitted into the counter of the 3rd trolley. Therefore, the 3rd trolley also has to be replaced with a new trolley and with a new counter, so the metal chain from the new 2nd trolley can be fitted and connected to the 3rd trolley. However, with a new 3rd trolley, the metal chain would also be replaced with a new one, meaning that it cannot be fitted into the counter of the 4th trolley. Hence, the entire chain of trolleys starting from the first replaced trolley needs to be replaced to make a proper and valid blockchain. Other than that, this would have to happen under 10 minutes before he loses his chance.
+Imagine that a supermarket's manager would like to accept a new shipment of trolleys after they arrived. If the trolleys are all connected properly in a chain, the manager can readily accept the shipment. If not, the shipment would have to be rejected and a new one would be requested. 
 
-Now, even if the saboteur wants to remove the 2nd trolley entirely, as the blockchain must be a complete chain of blocks, it’s would mean that Block 1’s metal chain would have to match Block 3’s counter, and since each trolley’s metal chain can only fit into the next trolley’s counter, there would exist a broken chain between block 1 and block 3, hence the chain of trolleys would be broken and not be considered a valid chain by the manager.
+Think of a saboteur who wants to mess up the trolleys by replacing them with trolleys belonging to another supermarket. Let’s say he wants to replace trolley 2, it would be a very tedious task. If a new trolley 2 is inserted into the chain, its current metal chain would have to be changed entirely as the chain cannot fit into the counter of trolley 3. As such, trolley 3 also has to be replaced with a new trolley with a new counter, so that the metal chain from the new trolley 2 can match and be connected to trolley 3. However, with a new trolley 3, the metal chain would also have to be replaced as it cannot fit into the counter of trolley 4. Hence, the entire chain of trolleys starting from the first needs to be replaced entirely.
 
-#####**5.6: Hash**
-The use of hash functions to hash each user's identity ensures the protection of identities, and is additionally used to hash the contents of each block in the blockchain, ensuring data integrity. This is due to the properties of a blockchain, as the blocks in the chain are held together by their hashes, which depend on their contents. Hence editing the contents in any block renders the rest of the chain invalid, preventing hacking of the chain.
+Using the same example, even if the saboteur just want to remove trolley 2 completely, as all the trolleys must be in a chain, it would mean that now, trolley 1's metal chain would have to match the trolley 3's counter. Since each trolley’s metal chain can only fit into the next trolley’s counter sequentially, there would be a missing chain between the first and the third trolley. As a result, the chain of trolleys would be broken and cannot be considered valid by the manager. 
 
-#####**5.7: Example of implementation of Hashes in our system**
+Other than the logistics, the saboteur also has under 10 minutes to do all these before he loses his chance as that is the typical blockchain refresh rate.
+
+#####**4.6: Hash**
+The use of hash functions to hash each user's identity ensures the protection of identities. The hash fuctions can also be used to hash the contents of each block in the blockchain to ensure data integrity. 
+
+This is due to the properties of a blockchain - that blocks in the chain are held together by their hashes and characteristic of the hashes depends on the block's contents. Hence, editing the contents in any block renders the rest of the chain invalid, preventing hacking of the chain.
+
+#####**4.7: Example of implementation of Hashes in our system**
 Function to hash blocks before adding them to the Blockchain
 ```
 #function to generate and add a hash of the current block to the block (hash is based on identity, cumulative sum of votes and hash of the previous block)
@@ -96,12 +100,14 @@ hash_block <- function(block){
 }
 ```
 
-###**6. Comparison between our system and a digital spreadsheet**
+###**5. Comparison between our system and a digital spreadsheet**
 ![l](https://user-images.githubusercontent.com/45550811/52999385-92729b80-3460-11e9-880d-8725777789fb.png)
-From this figure, we can observe the distinct difference between these 2 ways of storing data. In terms of access, the blockchain allows anyone to view it, but only a select few, such as the doctor in our case, would be able to view the data inside the blockchain with the use of the private key. On the other hand, for a digital spreadsheet such as google spreadsheet, everyone with the password, participant or not, has access to it and everyone is able to observe its contents. The blockchain uses a peer to peer (P2P) distribution network to keep the blockchain updated and data storage is decentralised, while the digital spreadsheet usually uses a client and server distribution, with data being sent to the main server before it would be sent back, hence it utilises a centralised data storage system. For the contents inside each storage system, the pairing of blockchain and additive homomorphic encryption has allowed the data to be encrypted, synchronised and shared between participants in real time, with the addition of data in blockchains being orderly and well controlled. On the other hand, the password protected digital spreadsheet offers little security as the data is unencrypted and anyone with access to the spreadsheet is able to tamper with it. Addition of data is uncontrollable and unorderly while the password protection is ineffective as it would be easy to crack and intercepted. For the blockchain, when data has been uploaded, it would be immutable. The blockchain operates on a public system, with it being accessible to everyone and anonymity ensured for each participant. The digital spreadsheet, on the other hand, uses a private-based system where the identity of each participant may not be anonymous and they are trusted and pre-vetted before being granted access to the spreadsheet. In terms of its defense against hackers, although a centralised data storage system is used and maximum security is provided for the server, the data in question is still vulnerable. The hacker could either intercept transmissions between the participant and the server to obtain the password for the spreadsheet; or he could simply break the password securing the document. With the data in the spreadsheet being unencrypted, the hacker would be exposed to a trove of data that can be manipulated, leading to dire consequences. However, for the blockchain, it utilises the P2P network to deter hackers as they would need to replace the blockchains in >50% of all the nodes to successfully alter the final product. In addition, the altering of data in each block is made troublesome and time consuming for the saboteur through the use of the Hash function. The data is also protected with paillier encryption, hence only those with the private key, namely the doctors in our case, are able to decrypt the encrypted data.
+From this figure, we can observe the distinct difference between these 2 methods of storing data. In terms of access, the blockchain allows anyone to view it, but only a select few, such as the Doctor-In-Charge, in our case, would be able to get data from the blockchain with the use of the private key. On the other hand, for a digital spreadsheet such as Google spreadsheet, anyone with the password, legitimate participant or not, has access to it and is able to see the contents. 
+
+The blockchain uses a peer to peer (P2P) distribution network to keep the blockchain updated and data storage is decentralised, while the digital spreadsheet usually uses a client and server distribution, with data being sent to the main server before it would be sent back, hence it utilises a centralised data storage system. For the contents inside each storage system, the pairing of blockchain and additive homomorphic encryption has allowed the data to be encrypted, synchronised and shared between participants in real time, with the addition of data in blockchains being orderly and well controlled. On the other hand, the password protected digital spreadsheet offers little security as the data is unencrypted and anyone with access to the spreadsheet is able to tamper with it. Addition of data is uncontrollable and unorderly while the password protection is ineffective as it would be easy to crack and intercepted. For the blockchain, when data has been uploaded, it would be immutable. The blockchain operates on a public system, with it being accessible to everyone and anonymity ensured for each participant. The digital spreadsheet, on the other hand, uses a private-based system where the identity of each participant may not be anonymous and they are trusted and pre-vetted before being granted access to the spreadsheet. In terms of its defense against hackers, although a centralised data storage system is used and maximum security is provided for the server, the data in question is still vulnerable. The hacker could either intercept transmissions between the participant and the server to obtain the password for the spreadsheet; or he could simply break the password securing the document. With the data in the spreadsheet being unencrypted, the hacker would be exposed to a trove of data that can be manipulated, leading to dire consequences. However, for the blockchain, it utilises the P2P network to deter hackers as they would need to replace the blockchains in >50% of all the nodes to successfully alter the final product. In addition, the altering of data in each block is made troublesome and time consuming for the saboteur through the use of the Hash function. The data is also protected with paillier encryption, hence only those with the private key, namely the doctors in our case, are able to decrypt the encrypted data.
 
 
-###**7. Explanation and deployment of our system**
+###**6. Explanation and deployment of our system**
 ####Here's a general overview of how our code works:
 **Initialisation will be done by the initiator:** 
 ![c](https://user-images.githubusercontent.com/45550811/52999377-91416e80-3460-11e9-9c54-025eec6c7b0e.png)
@@ -113,7 +119,7 @@ From this figure, we can observe the distinct difference between these 2 ways of
 
 We will now proceed on to the analysis of the files we downloaded from OpenSNP to test out our system on real data. There are 3 different phases, namely: The initiation phase, the extension phase and the analysis phase. Firstly, the initiation phase:
 
-####**7.1: Initialisation phase**
+####**6.1: Initialisation phase**
 
 Firstly, we need to call the relevant package and functions associated with it.
 ```
@@ -289,7 +295,7 @@ Firstly, the Paillier public and private keys are generated using the keys() fun
 keyPair <- keys(modulusBits)  
 ```
 
-#####**7.11: keys()**
+#####**6.11: keys()**
 We define a function which allows us to quickly generate the Paillier public and private key pair based on the desired bit size of the key.
 The keys() function simply accepts the input of the modulus bit size of the paillier key pair and calls The function PaillierKeyPair$new(), which uses the input of the keys() function to generate the public key and the private key. This key pair is then returned by the keys() function in a variable named keyPair.
 
@@ -306,7 +312,7 @@ Next, the random starting number is generated using the sample.int() function.
 message <- sample.int(message_range,1,replace=TRUE)  
 ```
 
-#####**7.12: sample.int()**
+#####**6.12: sample.int()**
 The sample.int() function is a standard R function used to output randomized nonnegative integer from 1 to a specified nonnegative integer. The first input specifies the range of numbers to randomize, the second input specifies how many randomized numbers to output, and the third input specifies whether or not randomized numbers can be repeated. For our system, we only need 1 random starting number, hence the inputs as message_range, 1, and replace=TRUE.
 
 The random starting number is then printed out and encrypted using the Paillier public key.
@@ -317,7 +323,7 @@ enc_message <- keyPair$pubkey$encrypt(message)
 enc_new_message <- enc_message
 ```
 
-#####**7.13: KeyPair\$PubKey\$Encrypt()**
+#####**6.13: KeyPair\$PubKey\$Encrypt()**
 The KeyPair\$PubKey\$Encrypt() function accepts the input of a number and generates an encrypted version of the number using the public key from the paillier key pair. The first \$ sign states that we are selecting the Public key from the KeyPair and the second \$ sign states that we are encrypting the input using the Public key.
 
 Next, the genesis block is generated containing the initiator's identity, the exact time, the encrypted starting number and the previous hash of the block which is set as 0, using the list() function.
@@ -329,7 +335,7 @@ block_genesis <-  list(identity = "Doctor",
                        previous_hash = "0")
 ```
 
-#####**7.14: List()**
+#####**6.14: List()**
 This function literally creates a list of items, and these items can store data. Think of it as a container manufacturing line, where after you make the line, you can still make more containers and access whatever is inside the containers. In our system, we use the list() function to simulate the parameters in each block and to simulate a blockchain.
 
 The genesis block is then hashed using the hash_block function.
@@ -340,7 +346,7 @@ block_genesis <- hash_block(block_genesis)
 
 We define a function to hash a newly created block before its added to the blockchain.
 
-#####**7.15: Hash_block()**
+#####**6.15: Hash_block()**
 The Hash_block() function is, as its name suggests, used to hash a block after its created. The function takes in a newly created block as input. It then creates a unique hash by combining the identity, data and previous_hash parameters of the block into an array and hashing this array using both the sha256 Hash algorithm as well as the R digest() function obtained from the digest package in R. It then stores this created hash in a newly generated parameter of the block named "new_hash". The block, now containing its own hash, is then designated as output of the Hash_block function.
 
 ```
@@ -359,7 +365,7 @@ blockchain <- list(block_genesis)
 previous_block <- blockchain[[1]]
 ```
 
-####**7.2: Extension phase**
+####**6.2: Extension phase**
 
 Next, we initialize an error list to contain the file numbers which belong to repeated individuals.
 
@@ -367,7 +373,7 @@ Next, we initialize an error list to contain the file numbers which belong to re
 error_list <- c() 
 ```
 
-#####**7.21: error_list()**
+#####**6.21: error_list()**
 The error_list is defined as an R array, and is used to track files which are added by any same individual twice or more in order to prevent double-counting. Any individual who tries to add more than one file will fail on the second or higher attempt, since the check_identity() which runs before a block can be created will return a 1, indicating the presence of a repeat identity, after which the respondent's number in question will be sent to the error_list. This error list is subsequently printed out. This is especially useful when the person creating the blockchain already has a bulk of VCF files (along with all corresponding identities) to begin with, in which case the files can be added rapidly through a for loop, and the exact files which have repeated identities will be displayed in the error_list, leaving out the need for a tedious manual check.
 
 A variable to measure the length of the blockchain is initialized and set to 0.
@@ -392,7 +398,7 @@ Next, check if there is a repeat identity
 ```
 We define a function to check identity of each patient before a patient adds a block, to ensure there's no double counting.
 
-#####**7.22: Check_identity()**
+#####**6.22: Check_identity()**
 This function checks the given identity against all the identities so far within the blockchain. By inputting the current blockchain, number of patients so far along with the identity of the given patient, this function accesses every single block to compare the identities of the given patient with the ones in the blocks. It will return a '0' if there is no error or a '1' if it is a repeat identity.
 
 ```
@@ -432,7 +438,7 @@ Determine the respondent's binary response by applying the File_to_binary() func
 
 We define the File_to_binary function, which takes in the respondent's file, the queried allele name and the queried genotype.
 
-#####**7.23: File_to_binary()**
+#####**6.23: File_to_binary()**
 This function takes a file and returns a '1' or a '0' based on the patient's vote, thus the name file to binary. By inputting the patient's file, SNP position and the base the doctor wants, it will access the file for that snp position. If the file does not have the position, a '2' is returned for an error to be flagged. If it does, it will read the file in table format. The 3 most commonly used files for storing SNP data are ftdna-illumina, 23andme and ancestry files, all of which have different number of columns, 1, 4 and 5 respectively. We use this to identify what kind of format the file is in, then we extract the base pair data from the given position. If this matches the doctor's pair, it will return a '1'. If not, it will return a '0'.
 
 ```
@@ -520,7 +526,7 @@ The binary response is then encrypted using the enc_vote() function.
 
 We define a function which allows us to encrypt the respondent's binary response.
 
-#####**7.24: enc_vote()**
+#####**6.24: enc_vote()**
 The enc_vote() function accepts the input of the participant’s response (1 or 0) as well as the paillier key pair. After calling the KeyPair\$PubKey\$Encrypt() function, the enc_vote() function returns the encrypted participant’s response in the variable enc_patient_vote.
 ```
 enc_vote <- function(patient_vote,keyPair){  
@@ -540,7 +546,7 @@ The encrypted response is then added to the cumulative sum of responses to updat
 
 We define a function to add the respondent's encrypted binary response to the encrypted cumulative sum of responses using the Paillier public key.
 
-#####**7.25: add_vote()**
+#####**6.25: add_vote()**
 The add_vote() function accepts the input of the “data” section from the previous block (enc_patient_vote) as well as the “data” section from the current block (enc_message). It calls the function keyPair\$pubkey\$add(), which uses the input, enc_message and enc_patient_vote, to generate the encrypted sum from the addition of these 2 variables. The add_vote() function will then return the encrypted sum in a variable named enc_new_message.
 ```
 add_vote <- function(enc_patient_vote,enc_message){  
@@ -556,7 +562,7 @@ The previous block's hash, the updated cumulative sum of responses and the respo
 
 We define a function to generate a new block to add to the blockchain.
 
-#####**7.26: gen_new_block()**
+#####**6.26: gen_new_block()**
 This function creates a new block with the given parameters and returns it. By inputting the previous block, the cumulative sum and identity of the patient, it generates a new block, containing the identity of the patient, timestamp of when it was created, the cumulative sum and the hash of the previous block. It then uses the hash_block() function, returning a new block.
 ```
 gen_new_block <- function(previous_block, votesum, identity){
@@ -617,7 +623,7 @@ It then updates the array of VCF files and array of identities by getting rid of
 }
 ```
 
-####**7.3: Analysis phase**
+####**6.3: Analysis phase**
 
 The cumulative sum of responses is then retrieved from the last block of the blockchain using the get_data() function.
 ```
@@ -626,7 +632,7 @@ final_message <- get_data(blockchain,number_of_patients,message)
 
 We define a function to get cumulative sum of responses from a specific block.
 
-#####**7.31: get_data()**
+#####**6.31: get_data()**
 
 This function returns the cumulative sum of the votes so far from the blockchain. By inputting the current blockchain, patient number along with the initial message the doctor created, it decrypts the \$data found within a given block, and minuses off the initial message to give the cumulative sum of votes so far.
 ```
@@ -669,7 +675,7 @@ check_hash(blockchain, number_of_patients)
 
 We define a function to check hashes to ensure there is no disparity.
 
-#####**7.32: check_hash()**
+#####**6.32: check_hash()**
 The check_hash() function checks and verifies that for every block in the blockchain, the current block's hash matches that of the previous block's.
 ```
 check_hash <- function(blockchain, patients){
@@ -703,12 +709,12 @@ If the flag value equals 0, it prints a statement indicating the position of the
 }
 ```
 
-####**7.4: Glossary**
+####**6.4: Glossary**
 Other functions we defined that are not used for this analysis are listed and explained in detail below:
 
 We defined a function to get the individual response from a block. It does so by applying the get_data() function on the specified block as well as the block directly before it. It then returns the individual response as output.
 
-#####**7.41: indiv_vote()**
+#####**6.41: indiv_vote()**
 This function returns the individual vote of any patient. By inputting the current blockchain, patient number along with the starting message, it uses the get_data() function to get the cumulative sum from that block and the block before. It then takes the difference between these two blocks to get the individual vote of the given patient.
 ```
 indiv_vote <- function(blockchain,patient_number,message){
@@ -718,7 +724,7 @@ indiv_vote <- function(blockchain,patient_number,message){
 ```
 We defined a function to get sum of responses from the specified range of blocks by applying the get_data() function over the specified range of blocks.
 
-#####**7.42: get_range_data()**
+#####**6.42: get_range_data()**
 This function returns the sum of votes across the specified range of blocks. By inputting the current blockchain, patient_x and patient_y, along with the initial message the doctor created, we can find the sum of votes across patient_x to patient_y. We do this by finding the cumulative data within both blocks using the function get_data(), and taking the difference between these values.
 ```
 
@@ -729,7 +735,7 @@ get_range_data <- function(blockchain,patient_number_1,patient_number_2,message)
 ```
 We defined a function to get proportion of respondents who responded "1" from a specified range of blocks by applying the get_range_data() function defined earlier over the specified range of blocks and dividing the output by the total number of respondents in the blockchain.
 
-#####**7.43: vote_proportion_range()**
+#####**6.43: vote_proportion_range()**
 ```
 
 vote_proportion_range <- function(blockchain,patient_number_1,patient_number_2,message){
@@ -742,7 +748,7 @@ vote_proportion_range <- function(blockchain,patient_number_1,patient_number_2,m
 
 Lastly, we defined a function to find a respondent's number given respondent's identity.
 
-#####**7.44: get_patient_number()**
+#####**6.44: get_patient_number()**
 ```
 get_patient_number <- function(blockchain,patients,identity){
 ```
@@ -766,7 +772,7 @@ For each block, it checks if the respondent's identity matches with that which i
 ```
 
 
-###**8. Conclusion**
+###**7. Conclusion**
 Of the 96 files we analyzed, 73 had the SNP we were looking for. Thus, the blockchain, excluding the genesis block, was 73 blocks in length. The obtained proportion of users who tested positive for "GG" genotype of the specified allele was 49/73, which is around 67.1%. Thus, we can conclude that the "GG" genotype of rs1269486 has indeed, as literature suggested [ref](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5346276/), a high probability of correlation with causing Hay Fever. To ensure reliability of our system, we conducted a negative control test on the 73 files. We chose the allele rs4420638 with genotype AG, which has a high correlation to Alzheimer’s disease [ref](https://doi.org/10.1016/j.ajhg.2008.10.008) [ref](http://dx.doi.org/10.1001/archneurol.2007.3), for this test. Out of the 46 files which had the queried SNP, the obtained proportion of users which tested positive for “AG” genotype of the specified allele was 7/23, which is approximately 30.4%. Although the population frequency of this allele has yet to be studied thoroughly, a study on its frequency in an Algerian population of 755 people reported a frequency of 19.8% [ref](https://doi.org/10.1186/1476-511X-12-155), which is a mere 10.6% difference from what we have determined using 46 files, taking into consideration that 46 files of people from different populations obtained from OpenSNP is not a very accurate determination of population frequency. Since the results of the negative control test are reasonable, it is clear that our system is not only able to fulfill its function, but can even be used to estimate the frequency of a SNP given a pool of respondents.
 
 We also recorded down the average time required to run different parts of the code, and the results are summarized in the table below:
@@ -782,13 +788,13 @@ Generate genesis block                                                       	| 
 Check and verify hashes                                                      	| 0.01    
 
 
-###**9. Future work**
+###**8. Future work**
 This technology can potentially be used in clinics and hospitals in the near future to confirm or even identify the SNPs that are responsible for a certain phenotype for efficient treatment. Additionally, we envision a society where people with genetic diseases will no longer solely rely on doctors and scientists to research on genetic diseases, but will also take up the initiative to, individually or in small groups, start blockchains of their own and conduct the necessary research. We will also develop an API (Application Programming Interface) so that people who use our platform to conduct analysis of their genomes do not need to obtain the code and change the necessary parameters before running it, but rather, can instead instruct a bot to do it for them, making it even more accessible and easy to understand and use.
 
-###**10. Acknowledgement**
+###**9. Acknowledgement**
 We would like to thank Winston Koh for his invaluable guidance and mentorship. Thanks also goes to Shawn Hoon of A*STAR MEL and our teacher mentor Mr Ng Chee Loong of NUS High School for providing insightful counsel and assistance. 
 
-###**11. References**
+###**10. References**
 Roberts, N. D., Kortschak, R. D., Parker, W. T., Schreiber, A. W., Branford, S., Scott, H. S., … Adelson, D. L. (2013). A comparative analysis of algorithms for somatic SNV detection in cancer. Bioinformatics. https://doi.org/10.1093/bioinformatics/btt375
 
 Kim, M., & Lauter, K. (2015). Private genome analysis through homomorphic encryption. BMC Medical Informatics and Decision Making, 15(5), S3. https://doi.org/10.1186/1472-6947-15-S5-S3
