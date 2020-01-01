@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ###**1. Abstract**
-We developed a query-based system which allows users to respond using their genome. It is developed via incorporating additive homomorphic encryption into a blockchain. This allows for secure and efficient accumulation of data in the form of genetic responses based on queries, which provides the security and robustness a regular spreadsheet or password-protected document is unable to offer. In the deployment of our system on real biological data, we used 73 VCF files obtained from OpenSNP belonging to users which have Hay Fever. The files can be found [here](https://opensnp.org/phenotypes/195)
+We developed a query-based system which allows users to respond using their genomic data. It is developed via incorporating additive homomorphic encryption into a blockchain. This allows for secure and efficient accumulation of data in the form of genetic responses based on queries, which provides the security and robustness a regular spreadsheet or password-protected document is unable to offer. In the deployment of our system on real biological data, we used 73 VCF files obtained from OpenSNP belonging to users which have Hay Fever. The files can be found [here](https://opensnp.org/phenotypes/195)
 
 ###**2. Introduction**
 All of us are well familiar with Facebook, a social networking platform allowing free open transmission of information, as well as Google Spreadsheet, which allows the upload and manipulation of data among users which have access to the spreadsheet. However, open sharing and manipulation of information may not necessarily be desired, especially in the field of Genomics. We therefore seek to develop a platform similar to Facebook and Google Spreadsheet which is adapted to the field of Genomics.
@@ -104,7 +104,15 @@ hash_block <- function(block){
 ![l](https://user-images.githubusercontent.com/45550811/52999385-92729b80-3460-11e9-880d-8725777789fb.png)
 From this figure, we can observe the distinct difference between these 2 methods of storing data. In terms of access, the blockchain allows anyone to view it, but only a select few, such as the Doctor-In-Charge, in our case, would be able to get data from the blockchain with the use of the private key. On the other hand, for a digital spreadsheet such as Google spreadsheet, anyone with the password, legitimate participant or not, has access to it and is able to see the contents. 
 
-The blockchain uses a peer to peer (P2P) distribution network to keep the blockchain updated and data storage is decentralised, while the digital spreadsheet usually uses a client and server distribution, with data being sent to the main server before it would be sent back, hence it utilises a centralised data storage system. For the contents inside each storage system, the pairing of blockchain and additive homomorphic encryption has allowed the data to be encrypted, synchronised and shared between participants in real time, with the addition of data in blockchains being orderly and well controlled. On the other hand, the password protected digital spreadsheet offers little security as the data is unencrypted and anyone with access to the spreadsheet is able to tamper with it. Addition of data is uncontrollable and unorderly while the password protection is ineffective as it would be easy to crack and intercepted. For the blockchain, when data has been uploaded, it would be immutable. The blockchain operates on a public system, with it being accessible to everyone and anonymity ensured for each participant. The digital spreadsheet, on the other hand, uses a private-based system where the identity of each participant may not be anonymous and they are trusted and pre-vetted before being granted access to the spreadsheet. In terms of its defense against hackers, although a centralised data storage system is used and maximum security is provided for the server, the data in question is still vulnerable. The hacker could either intercept transmissions between the participant and the server to obtain the password for the spreadsheet; or he could simply break the password securing the document. With the data in the spreadsheet being unencrypted, the hacker would be exposed to a trove of data that can be manipulated, leading to dire consequences. However, for the blockchain, it utilises the P2P network to deter hackers as they would need to replace the blockchains in >50% of all the nodes to successfully alter the final product. In addition, the altering of data in each block is made troublesome and time consuming for the saboteur through the use of the Hash function. The data is also protected with paillier encryption, hence only those with the private key, namely the doctors in our case, are able to decrypt the encrypted data.
+The blockchain uses a peer to peer (P2P) distribution network to keep the blockchain updated and data storage is decentralised, while the digital spreadsheet typically employ a client and server distribution network, with data being sent to the main server before it would be sent back. Hence, a centralised data storage framework in contrast to blockchain. 
+
+As for contents stored inside each system, the pairing of blockchain and additive homomorphic encryption allowed data to be encrypted, synchronised and shared between participants in real time. Data in blockchain is also orderly and well controlled. On the other hand, for digital spreadsheet, password protection offers little security as passwords may be easy to crack or intercepted. The data in digital spreadsheet is also unencrypted and anyone with access to the spreadsheet is able to tamper with it. Lastly, data structure is also uncontrollable and unorderly. 
+
+For the blockchain, when data has been uploaded, it would be immutable. The blockchain operates on a public system, with it being accessible to everyone and anonymity ensured for each participant. The digital spreadsheet, on the other hand, uses a private-based system where the identity of each participant may not be anonymous as participants are pre-vetted and deemed trustworthy before being granted access to the spreadsheet. 
+
+As for defense against hackers, although digital spreadsheet uses a centralised data storage system and maximum security may exist for the server, the data in question is still vulnerable. The hacker could either intercept transmissions between the participant and the server to obtain the password for the spreadsheet; or the hacker could simply break the password securing the document. With the data in the spreadsheet being unencrypted, the hacker would have access to a trove of data that can be manipulated or traded, leading to dire consequences. 
+
+However, for the blockchain, blockchain utilises the P2P network to deter hackers as they would need to replace the blockchains in >50% of all the nodes to successfully alter the final product. In addition, the altering of data in each block is tedious and time consuming for the hacker through the use of the Hash function. The data is also protected with paillier encryption. Hence, only those with the private key, like the Doctor-in-Charge in our case, is able to decrypt the encrypted data.
 
 
 ###**6. Explanation and deployment of our system**
@@ -117,7 +125,7 @@ The blockchain uses a peer to peer (P2P) distribution network to keep the blockc
 **Finally the initiator will carry out the analysis:**
 ![f](https://user-images.githubusercontent.com/45550811/52999381-91da0500-3460-11e9-94cd-3bb0a0950957.png)
 
-We will now proceed on to the analysis of the files we downloaded from OpenSNP to test out our system on real data. There are 3 different phases, namely: The initiation phase, the extension phase and the analysis phase. Firstly, the initiation phase:
+We will now proceed to the analysis of the files we downloaded from OpenSNP to test out our system on real data. There are 3 different phases: The initiation phase, the extension phase and the analysis phase.
 
 ####**6.1: Initialisation phase**
 
@@ -289,7 +297,7 @@ p72_identity <- "3X45tyggP7"
 p73_identity <- "3X45tyggP6"
 ```
 The following portion of code is to be run by the initiator of the blockchain:
-Firstly, the Paillier public and private keys are generated using the keys() function. 
+The Paillier public and private keys are generated using the keys() function. 
 
 ```
 keyPair <- keys(modulusBits)  
@@ -313,7 +321,7 @@ message <- sample.int(message_range,1,replace=TRUE)
 ```
 
 #####**6.12: sample.int()**
-The sample.int() function is a standard R function used to output randomized nonnegative integer from 1 to a specified nonnegative integer. The first input specifies the range of numbers to randomize, the second input specifies how many randomized numbers to output, and the third input specifies whether or not randomized numbers can be repeated. For our system, we only need 1 random starting number, hence the inputs as message_range, 1, and replace=TRUE.
+The sample.int() function is a standard R function used to output randomized nonnegative integer from 1 to a specified nonnegative integer. The first input specifies the range of numbers to randomize, the second input specifies how many randomized numbers to output, and the third input specifies whether or not randomized numbers can be repeated. For our system, we only need 1 random starting number. Hence, the input as message_range, 1, and replace=TRUE.
 
 The random starting number is then printed out and encrypted using the Paillier public key.
 
@@ -344,10 +352,10 @@ The genesis block is then hashed using the hash_block function.
 block_genesis <- hash_block(block_genesis)  
 ```
 
-We define a function to hash a newly created block before its added to the blockchain.
+We define a function to hash a newly created block before it is added to the blockchain.
 
 #####**6.15: Hash_block()**
-The Hash_block() function is, as its name suggests, used to hash a block after its created. The function takes in a newly created block as input. It then creates a unique hash by combining the identity, data and previous_hash parameters of the block into an array and hashing this array using both the sha256 Hash algorithm as well as the R digest() function obtained from the digest package in R. It then stores this created hash in a newly generated parameter of the block named "new_hash". The block, now containing its own hash, is then designated as output of the Hash_block function.
+The Hash_block() function is, as its name suggests, used to hash a block after it is created. The function takes in a newly created block as input. It then creates a unique hash by combining the identity, data and previous_hash parameters of the block into an array and hashing this array using both the sha256 Hash algorithm as well as the R digest() function obtained from the digest package in R. It then stores this created hash in a newly generated parameter of the block named "new_hash". The block, now containing its own hash, is then designated as output of the Hash_block function.
 
 ```
 hash_block <- function(block){
@@ -374,7 +382,7 @@ error_list <- c()
 ```
 
 #####**6.21: error_list()**
-The error_list is defined as an R array, and is used to track files which are added by any same individual twice or more in order to prevent double-counting. Any individual who tries to add more than one file will fail on the second or higher attempt, since the check_identity() which runs before a block can be created will return a 1, indicating the presence of a repeat identity, after which the respondent's number in question will be sent to the error_list. This error list is subsequently printed out. This is especially useful when the person creating the blockchain already has a bulk of VCF files (along with all corresponding identities) to begin with, in which case the files can be added rapidly through a for loop, and the exact files which have repeated identities will be displayed in the error_list, leaving out the need for a tedious manual check.
+The error_list is defined as an R array, and is used to track files which are added by any same individual twice or more in order to prevent double-counting. Any individual who tries to add more than one file will fail on the second or higher attempt, since the check_identity() which runs before a block can be created will return a 1, indicating the presence of a repeat identity, after which the respondent's number in question will be sent to the error_list. This error list is subsequently printed out. This is especially useful when the person creating the blockchain already has a bulk of VCF files (along with all corresponding identities) to begin with, in which case the files can be added rapidly through a for-loop, and the exact files which have repeated identities will be displayed in the error_list, leaving out the need for a tedious manual check.
 
 A variable to measure the length of the blockchain is initialized and set to 0.
 
@@ -396,10 +404,10 @@ Next, check if there is a repeat identity
 ```
   if((check_identity(blockchain, i-length(error_list), all_identity[i])==0)){ 
 ```
-We define a function to check identity of each patient before a patient adds a block, to ensure there's no double counting.
+We define a function to check identity of each patient before a patient adds a block, to ensure no double counting.
 
 #####**6.22: Check_identity()**
-This function checks the given identity against all the identities so far within the blockchain. By inputting the current blockchain, number of patients so far along with the identity of the given patient, this function accesses every single block to compare the identities of the given patient with the ones in the blocks. It will return a '0' if there is no error or a '1' if it is a repeat identity.
+This function checks the given identity against all the identities so far within the blockchain. By inputting the current blockchain, number of patients so far and the identity of the given patient, this function accesses every single block to compare the identities of the given patient with the ones in the blocks. It will return a '0' if there is no error or a '1' if it is a repeat identity.
 
 ```
 check_identity <- function(blockchain, patients, identity){   
@@ -409,12 +417,12 @@ Firstly, it initializes a flag with value 0 as a value to check against
 ```
   flag = 0   
 ```
-Then it constructs a for loop to go through every block in the blockchain
+Then it constructs a for-loop to go through every block in the blockchain
 .
 ```
   for (i in 1:patients){   
 ```
-For every block, it checks if patient's identity matches with that which is stored in the current block. If they are not equal, then it  sets the flag value to 1 to indicate the patient has already previously added a block under the same identity and sets the loop's counter equal to the number of patients to end the loop.
+For every block, it checks if the patient's identity matches with that stored in the current block. If they are equal, then it sets the flag value to 1 to indicate the patient has already previously added a block under the same identity and sets the loop's counter equal to the number of patients to end the loop.
 
 ```
   if (identity == blockchain[[i]][1]$identity){    
@@ -439,7 +447,7 @@ Determine the respondent's binary response by applying the File_to_binary() func
 We define the File_to_binary function, which takes in the respondent's file, the queried allele name and the queried genotype.
 
 #####**6.23: File_to_binary()**
-This function takes a file and returns a '1' or a '0' based on the patient's vote, thus the name file to binary. By inputting the patient's file, SNP position and the base the doctor wants, it will access the file for that snp position. If the file does not have the position, a '2' is returned for an error to be flagged. If it does, it will read the file in table format. The 3 most commonly used files for storing SNP data are ftdna-illumina, 23andme and ancestry files, all of which have different number of columns, 1, 4 and 5 respectively. We use this to identify what kind of format the file is in, then we extract the base pair data from the given position. If this matches the doctor's pair, it will return a '1'. If not, it will return a '0'.
+This function takes a file and returns a '1' or a '0' based on the patient's vote, thus the name file_to_binary. By inputting the patient's file, SNP position and the base the doctor wantsto query, it will access the file for that SNP position. If the file does not have the position, a '2' is returned for an error to be flagged. If it does, it will read the file in table format. The 3 most commonly used files for storing SNP data are ftdna-illumina, 23andme and ancestry files, all of which have different number of columns, 1, 4 and 5 respectively. We use this to identify what kind of format the file is in, then we extract the base pair data from the given position. If this matches the doctor's pair, it will return a '1'. If not, it will return a '0'.
 
 ```
 File_to_binary <- function(file,snp_id,doctor_base){
@@ -688,7 +696,7 @@ It then constructs a for loop to go through every block in the blockchain.
 ```
   for (i in (patients)){
 ```
-It then checks if the current block's hash value matches with that which is stored in the block directly after it, and if the 2 values are not equal, it initializes a variable called error to store the position of the blocks containing the hash mismatch, sets the loop's counter equal to the number of patients to end the loop and sets the flag value to 0 to indicate there is an error present.
+It then checks if the current block's hash value matches with that which is stored in the block directly after it, and if the 2 values are not equal, it initializes a variable called 'error' to store the position of the blocks containing the hash mismatch, sets the loop's counter equal to the number of patients to end the loop and sets the flag value to 0 to indicate there is an error present.
 ```
     if (blockchain[[i]][5]$new_hash != blockchain[[i+1]][4]$previous_hash){    
       error = i   
@@ -715,7 +723,7 @@ Other functions we defined that are not used for this analysis are listed and ex
 We defined a function to get the individual response from a block. It does so by applying the get_data() function on the specified block as well as the block directly before it. It then returns the individual response as output.
 
 #####**6.41: indiv_vote()**
-This function returns the individual vote of any patient. By inputting the current blockchain, patient number along with the starting message, it uses the get_data() function to get the cumulative sum from that block and the block before. It then takes the difference between these two blocks to get the individual vote of the given patient.
+This function returns the individual vote of any patient. By inputting the current blockchain, patient number along with the starting message, it uses the get_data() function to get the cumulative sum from that block and the block before. It then takes the difference between these two blocks to get the individual vote of the patient.
 ```
 indiv_vote <- function(blockchain,patient_number,message){
   ans <- get_data(blockchain,patient_number,message) - get_data(blockchain,(patient_number-1),message) 
@@ -773,23 +781,25 @@ For each block, it checks if the respondent's identity matches with that which i
 
 
 ###**7. Conclusion**
-Of the 96 files we analyzed, 73 had the SNP we were looking for. Thus, the blockchain, excluding the genesis block, was 73 blocks in length. The obtained proportion of users who tested positive for "GG" genotype of the specified allele was 49/73, which is around 67.1%. Thus, we can conclude that the "GG" genotype of rs1269486 has indeed, as literature suggested [ref](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5346276/), a high probability of correlation with causing Hay Fever. To ensure reliability of our system, we conducted a negative control test on the 73 files. We chose the allele rs4420638 with genotype AG, which has a high correlation to Alzheimer’s disease [ref](https://doi.org/10.1016/j.ajhg.2008.10.008) [ref](http://dx.doi.org/10.1001/archneurol.2007.3), for this test. Out of the 46 files which had the queried SNP, the obtained proportion of users which tested positive for “AG” genotype of the specified allele was 7/23, which is approximately 30.4%. Although the population frequency of this allele has yet to be studied thoroughly, a study on its frequency in an Algerian population of 755 people reported a frequency of 19.8% [ref](https://doi.org/10.1186/1476-511X-12-155), which is a mere 10.6% difference from what we have determined using 46 files, taking into consideration that 46 files of people from different populations obtained from OpenSNP is not a very accurate determination of population frequency. Since the results of the negative control test are reasonable, it is clear that our system is not only able to fulfill its function, but can even be used to estimate the frequency of a SNP given a pool of respondents.
+Of the 96 files we analyzed, 73 had the SNP we were looking for. Thus, the blockchain, excluding the genesis block, was 73 blocks in length. The obtained proportion of users who tested positive for "GG" genotype of the specified allele was 49/73, which is around 67.1%. Thus, we can conclude that the "GG" genotype of rs1269486 has indeed, as literature suggested [ref](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5346276/), a high probability of correlation with causing Hay Fever. To ensure reliability of our system, we conducted a negative control test on the 73 files. We chose the allele rs4420638 with genotype AG, which has a high correlation to Alzheimer’s disease [ref](https://doi.org/10.1016/j.ajhg.2008.10.008) [ref](http://dx.doi.org/10.1001/archneurol.2007.3), for this test. Out of the 46 files which had the queried SNP, the obtained proportion of users which tested positive for “AG” genotype of the specified allele was 7/23, which is approximately 30.4%. Although the population frequency of this allele has yet to be studied thoroughly, a study on its frequency in an Algerian population of 755 people reported a frequency of 19.8% [ref](https://doi.org/10.1186/1476-511X-12-155), which is a 10.6% difference from what we have determined using 46 files, taking into consideration that 46 files of people from different populations obtained from OpenSNP is not an accurate determination of population frequency. 
 
-We also recorded down the average time required to run different parts of the code, and the results are summarized in the table below:
+Since the results of the negative control test are reasonable, it is clear that our system is not only able to fulfill its function, but can even be used to estimate the frequency of a SNP given a pool of respondents.
+
+We also recorded the average time required to run different parts of the code, and the results are summarized in the table below:
 
 
-Time taken to                                                                	| seconds
+Time taken to                                                                	   | seconds
 ---------------------------------------------------------------------------------|---------
-Run through the entire system with 73 files                                  	| 843.83   
-Read 1 VCF file, check identity and generate a block                         	| 11.24   
+Run through the entire system with 73 files                                  	   | 843.83   
+Read 1 VCF file, check identity and generate a block                         	   | 11.24   
 Generate Paillier Key Pair, generate random number and encrypt the random number | 0.98    
-Decrypt responses and obtain response proportion                             	| 0.03    
-Generate genesis block                                                       	| 0.01    
-Check and verify hashes                                                      	| 0.01    
+Decrypt responses and obtain response proportion                                 | 0.03    
+Generate genesis block                                                       	   | 0.01    
+Check and verify hashes                                                      	   | 0.01    
 
 
 ###**8. Future work**
-This technology can potentially be used in clinics and hospitals in the near future to confirm or even identify the SNPs that are responsible for a certain phenotype for efficient treatment. Additionally, we envision a society where people with genetic diseases will no longer solely rely on doctors and scientists to research on genetic diseases, but will also take up the initiative to, individually or in small groups, start blockchains of their own and conduct the necessary research. We will also develop an API (Application Programming Interface) so that people who use our platform to conduct analysis of their genomes do not need to obtain the code and change the necessary parameters before running it, but rather, can instead instruct a bot to do it for them, making it even more accessible and easy to understand and use.
+This technology can potentially be used in clinics and hospitals in the near future to confirm or even identify the SNPs that are responsible for a certain phenotype to effect treatment. Additionally, we also envisage a society where people with genetic diseases may no longer solely rely on doctors and scientists to research on genetic diseases and will take the initiative to, individually or in small groups, start blockchains of their own to conduct the necessary research. We will also be developing an API (Application Programming Interface) so that users of our platform do not need to obtain the code or to change the parameters before running it, but rather, can instead instruct a bot to do it for them, making it even more accessible and easy to understand and use. 
 
 ###**9. Acknowledgement**
 We would like to thank Winston Koh for his invaluable guidance and mentorship. Thanks also goes to Shawn Hoon of A*STAR MEL and our teacher mentor Mr Ng Chee Loong of NUS High School for providing insightful counsel and assistance. 
